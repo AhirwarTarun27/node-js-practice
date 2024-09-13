@@ -5,6 +5,8 @@ const tasks = require('./routes/task');
 const connectDB = require('./db/connect');
 require('dotenv').config();
 
+// middleware to run static file like html
+app.use(express.static('./public'));
 // adding middleware for reading the data from req.body;
 app.use(express.json());
 
