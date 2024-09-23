@@ -5,19 +5,17 @@ const tasks = require('./routes/task');
 const connectDB = require('./db/connect');
 require('dotenv').config();
 
+const notFound = require('./middleware/not-found');
+
 // middleware to run static file like html
 app.use(express.static('./public'));
 // adding middleware for reading the data from req.body;
 app.use(express.json());
 
-//routes
-app.get('/hello', (req, res) => {
-  res.send('Task Manager app');
-});
-
-//route route for the task file
-
+//route for the task file
 app.use('/api/v1/tasks', tasks);
+
+app.use(notFound);
 
 const start = async () => {
   try {
